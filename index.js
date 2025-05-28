@@ -1,0 +1,1 @@
+element = document.getElementById("newtodo")
