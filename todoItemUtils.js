@@ -1,37 +1,38 @@
 import {deleteTodoItem, todosBearbeiten} from "./todoManipulation.js";
 
-export function todoHerstellen(todoData, div3) {
+export function todoHerstellen(todoData, index) {
     const listItem = document.createElement("li");
 
-    // Speichert die aktuellen Daten in `data-todos`
+    // Speichert die aktuellen Daten in `index`
     listItem.dataset.todo = JSON.stringify(todoData);
+    listItem.dataset.index = index; // Keep index track for editing and deletion
 
-    // Detaillierte Anzeige
     listItem.innerHTML = `
-            <strong>${todoData.titel}</strong> (${todoData.istEvent})
-            <span class="edit-icon" title="Click to edit">✏️</span>
-            <button class="delete-button" title="Delete this todo">🗑️</button><br>
-            <strong>Priorität:</strong> ${todoData.priority}<br>
-            <em>Beschreibung:</em> ${todoData.beschreibung}<br>
-            <em>Autor:</em> ${todoData.autor}<br>
-            <em>Kategorie:</em> ${todoData.kategorie}<br>
-            <em>Wichtig:</em> ${todoData.wichtig ? "Ja" : "Nein"}, 
-            <em>Dringend:</em> ${todoData.dringend ? "Ja" : "Nein"}<br>
-            <em>Startdatum:</em> ${todoData.startDate || "Nicht angegeben"}<br>
-            <em>Enddatum:</em> ${todoData.endDate || "Nicht angegeben"}<br>
-            <em>Prozentsatz:</em>
-            <progress value="${todoData.percentage}" max="100"></progress> ${todoData.percentage}%<br>
-            <br>
-        `;
+        <strong>${todoData.titel}</strong> (${todoData.istEvent})
+        <button class="edit-icon" title="Click to edit">✏️</button>
+        <button class="delete-button" title="Delete this todo">🗑️</button><br>
+        <strong>Priorität:</strong> ${todoData.priority}<br>
+        <em>Beschreibung:</em> ${todoData.beschreibung}<br>
+        <em>Autor:</em> ${todoData.autor}<br>
+        <em>Kategorie:</em> ${todoData.kategorie}<br>
+        <em>Wichtig:</em> ${todoData.wichtig ? "Ja" : "Nein"}, 
+        <em>Dringend:</em> ${todoData.dringend ? "Ja" : "Nein"}<br>
+        <em>Startdatum:</em> ${todoData.startDate || "Nicht angegeben"}<br>
+        <em>Enddatum:</em> ${todoData.endDate || "Nicht angegeben"}<br>
+        <em>Prozentsatz:</em>
+        <progress value="${todoData.percentage}" max="100"></progress> ${todoData.percentage}%<br>
+    `;
     listItem.classList.add("list-item");
 
     // Klick-Handler für Bearbeiten
-    listItem.addEventListener("click", () => {
-        todosBearbeiten(listItem, div3); // Pass div3 explicitly
+    listItem.querySelector(".edit-icon").addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevent propagation
+        todosBearbeiten(listItem);
     });
 
     // Klick-Handler für Löschen
-    listItem.querySelector(".delete-button").addEventListener("click", () => {
+    listItem.querySelector(".delete-button").addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevent propagation
         deleteTodoItem(listItem);
     });
 

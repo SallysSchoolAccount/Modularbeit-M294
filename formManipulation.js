@@ -3,7 +3,6 @@ import { todosSpeichern } from "./todoManipulation.js";
 export function renderAddTodoForm(div3 = document.querySelector(".div3")) {
     div3.innerHTML = `
             <h3>Neues Todo einfügen</h3>
-            
             <form>
                 <label for="todoInput">Titel (Max: 255)</label>
                 <input type="text" id="todoInput" maxlength="255"><br><br>
@@ -50,18 +49,20 @@ export function renderAddTodoForm(div3 = document.querySelector(".div3")) {
             <button id="schliessenButton">Schliessen</button>
         `;
 
-    // Slider für prozent
     const prozentSlider = div3.querySelector("#percentage");
     const prozentValue = div3.querySelector("#percentageValue");
     prozentSlider.addEventListener("input", (event) => {
         prozentValue.textContent = `${event.target.value}%`;
     });
 
-    // Todos Einfügen Funktion
+    // Select the todos list so it can be passed to todosSpeichern
+    const todolist = document.querySelector("#todoList");
+
+    // Fixed Todos Save Function
     const addTodoButton = div3.querySelector("#addTodoButton");
     addTodoButton.addEventListener("click", (event) => {
-        event.preventDefault(); // Verhindert das Standard-Submit-Verhalten
-        todosSpeichern();
+        event.preventDefault(); // Prevent default submit behavior
+        todosSpeichern(div3, todolist); // Pass div3 and todolist
     });
 }
 
