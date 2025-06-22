@@ -41,3 +41,52 @@ header {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
 }
+
+/* Hover effect for editable todos */
+.editable-todo {
+    cursor: pointer;
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Soft background color for todos */
+    transition: background-color 0.3s;
+}
+
+.editable-todo:hover {
+    background-color: #e6f7ff; /* Light blue background on hover */
+}
+
+.editable-todo .edit-icon {
+    font-size: 1.2em;
+    vertical-align: middle;
+    color: #007bff; /* Blue color for edit icon */
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Tap feedback for interactive elements (mobile-friendly) */
+.editable-todo:active {
+    background-color: #d4ebf9;
+}
+
+.todo-item {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Add tooltip for the edit icon */
+.edit-icon:hover::after {
+    content: "Edit Todo";
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #fff;
+    background: #007bff;
+    border-radius: 4px;
+    padding: 5px;
+    position: absolute;
+    top: -25px;
+    left: 25px;
+    white-space: nowrap;
+}
