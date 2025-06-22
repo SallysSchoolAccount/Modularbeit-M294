@@ -1,5 +1,5 @@
 import { renderAddTodoForm, resetDiv3 } from "./formManipulation.js";
-import { todosSpeichern } from "./todoManipulation.js";
+import { todosSpeichern, deleteTodoItem } from "./todoManipulation.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const openButton = document.getElementById("openButton");
@@ -20,6 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
         addTodoButton.addEventListener("click", (event) => {
             event.preventDefault(); // Kein Refresh
             todosSpeichern(div3, todolist);
+
+            // Add delete functionality to newly added todos
+            todolist.querySelectorAll(".todo-item").forEach((item) => {
+                const deleteButton = item.querySelector(".delete-button");
+                if (deleteButton) {
+                    deleteButton.addEventListener("click", () => deleteTodoItem(item));
+                }
+            });
         });
     });
 });

@@ -1,4 +1,4 @@
-import { todosBearbeiten } from "./todoManipulation.js";
+import {deleteTodoItem, todosBearbeiten} from "./todoManipulation.js";
 
 export function todoHerstellen(todoData, div3) {
     const listItem = document.createElement("li");
@@ -9,7 +9,8 @@ export function todoHerstellen(todoData, div3) {
     // Detaillierte Anzeige
     listItem.innerHTML = `
             <strong>${todoData.titel}</strong> (${todoData.istEvent})
-            <span class="edit-icon" title="Click to edit">✏️</span><br>
+            <span class="edit-icon" title="Click to edit">✏️</span>
+            <button class="delete-button" title="Delete this todo">🗑️</button><br>
             <strong>Priorität:</strong> ${todoData.priority}<br>
             <em>Beschreibung:</em> ${todoData.beschreibung}<br>
             <em>Autor:</em> ${todoData.autor}<br>
@@ -27,6 +28,11 @@ export function todoHerstellen(todoData, div3) {
     // Klick-Handler für Bearbeiten
     listItem.addEventListener("click", () => {
         todosBearbeiten(listItem, div3); // Pass div3 explicitly
+    });
+
+    // Klick-Handler für Löschen
+    listItem.querySelector(".delete-button").addEventListener("click", () => {
+        deleteTodoItem(listItem);
     });
 
     return listItem;

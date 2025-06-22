@@ -131,3 +131,10 @@ export function todosBearbeiten(listItem, div3 = document.querySelector(".div3")
         resetDiv3();
     });
 }
+
+export function deleteTodoItem(todoItem) {
+    const isConfirmed = window.confirm("Are you sure you want to delete this todo?");
+    if (isConfirmed) {
+        todoItem.remove();
+    }
+}
