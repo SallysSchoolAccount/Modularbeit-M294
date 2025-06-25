@@ -3,31 +3,49 @@ header {
     display: flex;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f7fa; /* Light greyish blue background */
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+    color: #007bff; /* Nicely contrasting blue for headings */
+}
+
+
 .parent {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 8px;
+    grid-template-columns: 2fr 1fr; /* Adjusted ratio for div2 and div3 */
+    gap: 20px; /* Increased gap to maintain visual clarity */
+    padding: 20px;
 }
 .div1, .div2, .div3 {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border: 1px solid #ccc;
 }
 .div1 {
-    grid-column: span 5 / span 5;
+    grid-column: span 2;
+    text-align: center;
 }
 .div2 {
-    grid-column: span 3 / span 3;
+    grid-column: span 1 / span 1;
     grid-row: span 4 / span 4;
     grid-row-start: 2;
 }
 .div3 {
-    grid-column: span 2 / span 2;
-    grid-row: span 4 / span 4;
-    grid-column-start: 4;
-    grid-row-start: 2;
-    width: 30%;
-    position: relative;
+    grid-column: 2 / 3;
+    width: auto; /* Allow it to take natural width */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Maintain uniform style */
+    background: #ffffff;
+    padding: 20px;
 }
 .popup {
     position: absolute;
@@ -76,6 +94,34 @@ header {
     flex-direction: column;
 }
 
+/*Buttons*/
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue */
+}
+
+#openButton {
+    font-size: 1.5em;
+    border-radius: 50%; /* Circular button for an aesthetic '+' */
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
 /* Add tooltip for the edit icon */
 .edit-icon:hover::after {
     content: "Edit Todo";
@@ -89,4 +135,46 @@ header {
     top: -25px;
     left: 25px;
     white-space: nowrap;
+}
+
+/*todosItem*/
+.list-item {
+    border: 1px solid #dde5ec;
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    padding: 15px;
+    transition: box-shadow 0.3s;
+    list-style: none;
+}
+
+.list-item:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); /* Shadow for hover effect */
+}
+
+progress {
+    width: 100%;
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 6px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #007bff;
+    border-radius: 6px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
 }

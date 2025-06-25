@@ -29,7 +29,7 @@ export function todosSpeichern(div3, todolist) {
     const endDate = div3.querySelector("#endDate").value;
 
     if (!titel) {
-        alert("Bitte geben Sie den Titel ein."); // More specific alert for `titel`
+        alert("Bitte geben Sie den Titel ein."); //`titel`
         return;
     }
     if (!beschreibung) {
@@ -75,13 +75,14 @@ export function todosSpeichern(div3, todolist) {
         priority 
     };
 
-    todos.push(todoData); // Add the todos to the array
-    saveTodosToLocalStorage(); // Save the updated array to localStorage
+    //Speicher
+    todos.push(todoData); // Todos werden in Aray gepusht
+    saveTodosToLocalStorage(); // Speichet zu Localstoage
 
-    const listItem = todoHerstellen(todoData, todos.length - 1); // Create list item
-    todolist.appendChild(listItem); // Add the new todo to the list
+    const listItem = todoHerstellen(todoData, todos.length - 1); // Neue liste hestellen
+    todolist.appendChild(listItem); // Neue todos zu liste einfügen
 
-    formAusleeren(div3); // Clear the form inputs
+    formAusleeren(div3); // Leert fom aus
 }
 
 export function todosBearbeiten(listItem, div3 = document.querySelector(".div3")) {
@@ -205,4 +206,8 @@ export function deleteTodoItem(todoItem) {
             item.dataset.index = newIndex.toString(); // Update the index in dataset
         });
     }
+}
+// Filter todos by title based on the given query
+export function filterTodosByTitle(query) {
+    return todos.filter((todo) => todo.titel.toLowerCase().includes(query));
 }

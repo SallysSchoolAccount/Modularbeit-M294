@@ -21,6 +21,7 @@ export function todoHerstellen(todoData, index) {
         <em>Enddatum:</em> ${todoData.endDate || "Nicht angegeben"}<br>
         <em>Prozentsatz:</em>
         <progress value="${todoData.percentage}" max="100"></progress> ${todoData.percentage}%<br>
+        <br>
     `;
     listItem.classList.add("list-item");
 
